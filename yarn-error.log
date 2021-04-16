@@ -1,0 +1,59 @@
+Arguments: 
+  /Users/maruyamatsukasa/.nodebrew/node/v12.6.0/bin/node /usr/local/Cellar/yarn/1.22.4/libexec/bin/yarn.js install
+
+PATH: 
+  /Users/maruyamatsukasa/.pyenv/shims:/Users/maruyamatsukasa/.pyenv/bin:/Users/maruyamatsukasa/Shells:/Users/maruyamatsukasa/Library/Python/2.7/bin:/usr/local/opt/mysql@5.7/bin:/Users/maruyamatsukasa/.nodebrew/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/go/bin:/opt/X11/bin:/Users/atsu/Documents/google-cloud-sdk:/Users/maruyamatsukasa/.nodebrew/current/bin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  12.6.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/cookie-parser: tunneling socket could not be established, cause=connect ECONNREFUSED 127.0.0.1:80
+      at ClientRequest.onError (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:152234:17)
+      at Object.onceWrapper (events.js:291:20)
+      at ClientRequest.emit (events.js:203:13)
+      at Socket.socketErrorListener (_http_client.js:402:9)
+      at Socket.emit (events.js:203:13)
+      at emitErrorNT (internal/streams/destroy.js:91:8)
+      at emitErrorAndCloseNT (internal/streams/destroy.js:59:3)
+      at processTicksAndRejections (internal/process/task_queues.js:77:11)
+
+npm manifest: 
+  {
+    "name": "radio-chat-server",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+      "start": "node ./bin/www",
+      "dev": "nodemon -e ejs,js,json start ./bin/www"
+    },
+    "dependencies": {
+      "cookie-parser": "~1.4.4",
+      "cors": "^2.8.5",
+      "debug": "~2.6.9",
+      "express": "~4.16.1",
+      "express-cache-controller": "^1.1.0",
+      "http": "^0.0.1-security",
+      "http-errors": "~1.6.3",
+      "jade": "~1.11.0",
+      "morgan": "~1.9.1",
+      "node-fetch": "^2.6.1",
+      "socket.io": "^4.0.1",
+      "xmljson": "^0.2.0"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.7"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
