@@ -9,6 +9,10 @@ const cacheControl = require('express-cache-controller');
 const apiRouter = require('./routes/api')
 const apiSlackRouter = require('./routes/slack/index')
 
+if (process.env.NODE_ENV !== "production") {
+  require('dotenv').config();
+}
+
 const app = express();
 app.use(cors())
 app.use(cacheControl({ maxAge: 14400 }));
