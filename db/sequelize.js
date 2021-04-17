@@ -5,6 +5,7 @@ console.log("DB_USERNAME", process.env.DB_USERNAME)
 console.log("DB_PASSWORD", process.env.DB_PASSWORD)
 console.log("DB_HOST", process.env.DB_HOST)
 console.log("DB_PORT", process.env.DB_PORT)
+console.log("DATABASE_URL", process.env.DATABASE_URL)
 
 if (process.env.NODE_ENV === "production") {
   const sequelize = new Sequelize(process.env.DATABASE_URL)
