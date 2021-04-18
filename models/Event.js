@@ -19,7 +19,9 @@ const Event = sequelize.define('event', {
   userId: {
     type: Sequelize.INTEGER,
     field: 'user_id'
-  }
+  },
+  createdAt: {type: Sequelize.DATE, field: 'created_at'},
+  updatedAt: {type: Sequelize.DATE, field: 'updated_at'},
 }, {
   tableName:"events"
   // freezeTableName: true // Model tableName will be the same as the model name

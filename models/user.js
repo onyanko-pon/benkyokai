@@ -17,7 +17,9 @@ const User = sequelize.define('user', {
   teamId: {
     type: Sequelize.INTEGER,
     field: 'team_id'
-  }
+  },
+  createdAt: {type: Sequelize.DATE, field: 'created_at'},
+  updatedAt: {type: Sequelize.DATE, field: 'updated_at'},
 }, {
   tableName:"users"
   // freezeTableName: true // Model tableName will be the same as the model name

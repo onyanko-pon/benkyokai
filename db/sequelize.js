@@ -25,9 +25,9 @@ if (process.env.NODE_ENV === "production") {
       min: 0,
       idle: 10000
     },
-    define: {
-      timestamps: false
-    }
+    // define: {
+    //   timestamps: false
+    // }
   });
   module.exports = sequelize
 }
