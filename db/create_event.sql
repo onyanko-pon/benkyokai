@@ -1,6 +1,6 @@
-create table teams (
+create table workspaces (
     id SERIAL,
-    slack_id varchar(255) NOT NULL,
+    slack_id varchar(255) NOT NULL UNIQUE,
     name varchar(255) NOT NULL,
     created_at timestamp NOT NULL,
     updated_at timestamp NOT NULL,
@@ -9,11 +9,11 @@ create table teams (
 
 create table users (
     id SERIAL,
-    slack_id varchar(255) NOT NULL,
+    slack_id varchar(255) NOT NULL UNIQUE,
     name varchar(255) NOT NULL,
     created_at timestamp NOT NULL,
     updated_at timestamp NOT NULL,
-    team_id SERIAL NOT NULL REFERENCES teams(id),
+    workspace_id SERIAL NOT NULL REFERENCES workspaces(id),
     PRIMARY KEY (id)
 );
 

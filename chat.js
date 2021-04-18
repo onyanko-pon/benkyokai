@@ -6,7 +6,7 @@ exports.postMessage = async (channel, text, token = process.env.BOT_BEAR_TOKEN) 
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${BOT_BEAR_TOKEN}`
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify({channel, text, as_user, token})
   }).then(e => console.log(`message send ${text} to ${channel}`))

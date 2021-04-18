@@ -14,9 +14,9 @@ const User = sequelize.define('user', {
   name: {
     type: Sequelize.STRING,
   },
-  teamId: {
+  workspaceId: {
     type: Sequelize.INTEGER,
-    field: 'team_id'
+    field: 'workspace_id'
   },
   createdAt: {type: Sequelize.DATE, field: 'created_at'},
   updatedAt: {type: Sequelize.DATE, field: 'updated_at'},

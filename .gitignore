@@ -2,3 +2,5 @@ node_modules/*
 .env
 yarn.lock
 postgres/database/*
+
+db/seed_testdb.sql
