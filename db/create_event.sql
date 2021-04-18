@@ -24,6 +24,7 @@ create table events (
     created_at timestamp NOT NULL,
     updated_at timestamp NOT NULL,
     user_id SERIAL NOT NULL REFERENCES users(id),
+    workspace_id SERIAL NOT NULL REFERENCES workspaces(id),
     PRIMARY KEY (id)
 );
 

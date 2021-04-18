@@ -13,7 +13,8 @@ router.post("/", async (req, res) => {
     const event = await Event.create({
       title: "イベントタイトル",
       description: "説明を記述してください",
-      userId: user.id
+      userId: user.id,
+      workspaceId: user.workspaceId
     })
     chat.postMessage(user.slackId, `勉強会が作成されました event_id ${event.id}`)
     res.status(200)

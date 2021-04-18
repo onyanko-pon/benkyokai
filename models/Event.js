@@ -20,6 +20,10 @@ const Event = sequelize.define('event', {
     type: Sequelize.INTEGER,
     field: 'user_id'
   },
+  workspaceId: {
+    type: Sequelize.INTEGER,
+    field: 'workspace_id'
+  },
   createdAt: {type: Sequelize.DATE, field: 'created_at'},
   updatedAt: {type: Sequelize.DATE, field: 'updated_at'},
 }, {
