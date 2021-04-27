@@ -10,4 +10,7 @@ router.use("/users", userRouter)
 const workspaceRouter = require('./workspace')
 router.use("/workspaces", workspaceRouter)
 
+const authRouter = require('./auth')
+router.use("/auth", authRouter)
+
 module.exports = router;
