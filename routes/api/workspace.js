@@ -8,6 +8,8 @@ router.get("/:workspaceId/events", async (req, res) => {
 
   const {workspaceId} = req.params
 
+  console.log({cookie: req.cookies})
+
   Workspace.findByPk(workspaceId)
     .then(async (workspace) => {
       if (workspace === null) {
