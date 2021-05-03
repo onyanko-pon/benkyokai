@@ -1,0 +1,20 @@
+yarn add v1.22.4
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+success Saved lockfile.
+success Saved 9 new dependencies.
+info Direct dependencies
+└─ express@4.17.1
+info All dependencies
+├─ body-parser@1.19.0
+├─ content-disposition@0.5.3
+├─ express@4.17.1
+├─ finalhandler@1.1.2
+├─ mime@1.6.0
+├─ proxy-addr@2.0.6
+├─ raw-body@2.4.0
+├─ serve-static@1.14.1
+└─ type-is@1.6.18
+Done in 3.00s.
