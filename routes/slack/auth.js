@@ -42,7 +42,7 @@ router.post("/signin", async (req, res) => {
 
   res.cookie('token', token, {
     maxAge: 31536000,
-    SameSite: 'None',
+    sameSite: 'none',
     // TODO 本番で設定
     // domain: "",
     // secure: true,
