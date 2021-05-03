@@ -11,8 +11,6 @@ const auth = require("../../auth")
 router.post("/signin", async (req, res) => {
   const { code } = req.body
 
-  return res.json({message: "cookie set"})
-
   const fetch_res = await fetch("https://slack.com/api/oauth.v2.access", {
     method: "POST",
     headers: {"Content-Type": "application/x-www-form-urlencoded"},
