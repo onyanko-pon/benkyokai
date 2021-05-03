@@ -7,9 +7,11 @@ module.exports = (req, res, next) => {
     return res.status(403).json({message: "token not set"})
   }
 
-  jwt.verify(token, process.env.JWT_PRIVATE_KEY, function(err, decoded) {
+  jwt.verify(token, process.env.JWT_PRIVATE_KEY, function(err, payload) {
     if (err) {
       return res.status(403).json({err})
     }
+    req.jwtPayload = payload
+    next()
   })
 }

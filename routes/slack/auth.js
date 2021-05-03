@@ -29,7 +29,7 @@ router.post("/signin", async (req, res) => {
   try {
     token = jwt.sign({
       user_id: authed_user.id,
-      team_id: team.id,
+      workspace_id: team.id,
       access_token: authed_user.access_token,
     }, process.env.JWT_PRIVATE_KEY, {});
   } catch (e) {
@@ -51,8 +51,13 @@ router.post("/signin", async (req, res) => {
   res.status(200).json({user, workspace})
 })
 
-router.post("/verify_test", auth, (req, res) => {
-  return res.status(200).json({"message": "ok"})
+router.post("/verify", auth, async (req, res) => {
+
+  const payload = req.jwtPayload
+  const user = await User.findOne({ where: { slackId: payload.user_id}})
+  const workspace = await Workspace.findOne({ where: { slackId: payload.workspace_id}})
+
+  return res.status(200).json({user, workspace})
 })
 
 router.get("/hello", (req, res) => {
