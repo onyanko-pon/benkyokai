@@ -15,7 +15,10 @@ const apiRouter = require('./routes/api')
 const apiSlackRouter = require('./routes/slack/index')
 
 const app = express();
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:3000',
+  // optionsSuccessStatus: 200
+}))
 app.use(cacheControl({ maxAge: 14400 }));
 const cookieParser = require('cookie-parser')
 app.use(cookieParser());
