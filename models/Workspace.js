@@ -1,7 +1,9 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../db/sequelize')
+const User = require('../models/user')
+const Event = require('../models/Event')
 
-const Workspace = sequelize.define('workspace', {
+const Workspace = sequelize.define('Workspace', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,

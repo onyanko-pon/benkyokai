@@ -1,13 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../../auth')
-const Event = require('../../models/Event')
+
+const { Event, User } = require('../../models')
 
 router.get("/", auth, (req, res) => {
   Event.findAll({
     where: {
       workspaceId: req.jwtPayload.workspace_id
-    }
+    },
+    include: [
+      {
+        model: User,
+      },
+      {
+        model: User,
+        as: 'Administrator'
+      },
+    ],
   }).then(events => {
       res.status(200).json({events})
     }).catch(error => {
@@ -17,7 +27,17 @@ router.get("/", auth, (req, res) => {
 
 router.get("/:eventId", auth, async (req, res) => {
   const {eventId} = req.params
-  const event = await Event.findByPk(eventId)
+  const event = await Event.findByPk(eventId, {
+    include: [
+      {
+        model: User,
+      },
+      {
+        model: User,
+        as: 'Administrator'
+      },
+    ],
+  })
 
   if (!event) {
     return res.status(404).json({message: "not found"})

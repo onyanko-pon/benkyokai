@@ -28,3 +28,13 @@ create table events (
     PRIMARY KEY (id)
 );
 
+
+create table events_users (
+    id SERIAL,
+    user_id SERIAL NOT NULL REFERENCES users(id),
+    event_id SERIAL NOT NULL REFERENCES events(id),
+    created_at timestamp NOT NULL,
+    updated_at timestamp NOT NULL,
+    PRIMARY KEY (id)
+);
+
