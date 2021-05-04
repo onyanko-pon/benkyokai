@@ -20,3 +20,4 @@ User.belongsToMany(Event, { through: EventUser, foreignKey: 'event_id'})
 exports.Event = Event
 exports.Workspace = Workspace
 exports.User = User
+exports.EventUser = EventUser

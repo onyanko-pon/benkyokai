@@ -25,6 +25,27 @@ router.get("/", auth, (req, res) => {
   })
 })
 
+router.post("/:eventId/participate", auth, async (req, res) => {
+  const { eventId } = req.params
+  const {workspace_id, user_id} = req.jwtPayload
+
+  const event = await Event.findByPk(eventId)
+
+  if (event.workspaceId !== parseInt(workspace_id)) {
+    return res.status(403).json({message: "not auth"})
+  }
+
+  try {
+    const eventUser = await EventUser.create({
+      userId: user_id,
+      eventId: eventId
+    })
+    res.status(200).json({eventUser})
+  } catch (error) {
+    res.status(500).json({error})
+  }
+})
+
 router.get("/:eventId", auth, async (req, res) => {
   const {eventId} = req.params
   const event = await Event.findByPk(eventId, {
