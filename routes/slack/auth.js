@@ -25,19 +25,20 @@ router.post("/signin", async (req, res) => {
     return res.status(401).json(data)
   }
 
+  const user = await User.findOne({ where: { slackId: authed_user.id}})
+  const workspace = await Workspace.findOne({ where: { slackId: team.id}})
+
   let token = ""
   try {
     token = jwt.sign({
-      user_id: authed_user.id,
-      workspace_id: team.id,
+      user_id: user.id,
+      workspace_id: workspace.id,
       access_token: authed_user.access_token,
     }, process.env.JWT_PRIVATE_KEY, {});
   } catch (e) {
     return res.status(500).json({error: e})
   }
 
-  const user = await User.findOne({ where: { slackId: authed_user.id}})
-  const workspace = await Workspace.findOne({ where: { slackId: team.id}})
   req.session.user = user
 
   res.cookie('token', token, {
@@ -55,8 +56,8 @@ router.post("/signin", async (req, res) => {
 router.post("/verify", auth, async (req, res) => {
 
   const payload = req.jwtPayload
-  const user = await User.findOne({ where: { slackId: payload.user_id}})
-  const workspace = await Workspace.findOne({ where: { slackId: payload.workspace_id}})
+  const user = await User.findByPk(payload.user_id)
+  const workspace = await Workspace.findByPk(payload.workspace_id)
 
   return res.status(200).json({user, workspace})
 })

@@ -1,15 +1,22 @@
 const express = require('express');
 const router = express.Router();
-
+const auth = require('../../auth')
 const Event = require('../../models/Event')
 
-router.get("/", (req, res) => {
-  Event.findAll()
-    .then(events => {
+router.get("/", auth, (req, res) => {
+  Event.findAll({
+    where: {
+      team_id: req.jwtPayload.team_id
+    }
+  }).then(events => {
       res.status(200).json({events})
     }).catch(error => {
     res.status(500).json({error})
   })
+})
+
+router.get("/:eventId", (req, res) => {
+
 })
 
 router.put("/:event_id", (req, res) => {
