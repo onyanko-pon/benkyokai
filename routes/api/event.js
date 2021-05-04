@@ -50,31 +50,40 @@ router.get("/:eventId", auth, async (req, res) => {
   res.status(200).json({event})
 })
 
-router.put("/:event_id", (req, res) => {
-  const {event_id} = req.params
-  const {description, title} = req.body
+router.put("/:event_id", auth, async (req, res) => {
+  const { event_id } = req.params
+  const { description, title } = req.body
 
-  Event.findByPk(event_id)
-    .then(async (event) => {
-      event.description = description
-      event.title = title
-      await event.save()
-      res.status(200).json({event})
-    })
-    .catch(error => {
-      res.status(500).json({error})
-    })
+  const event = await Event.findByPk(event_id)
+
+  if (event.userId !== parseInt(req.jwtPayload.user_id)) {
+    return res.status(403).json({message: "not auth"})
+  }
+
+  event.description = description
+  event.title = title
+  try {
+    await event.save()
+    res.status(200).json({event})
+  } catch (error) {
+    res.status(500).json({error})
+  }
 })
 
-router.delete("/:event_id", (req, res) => {
-  const {event_id} = req.params
-  Event.destroy({
-    where: {id: event_id}
-  }).then(value => {
-    res.status(200).json({value})
-  }).catch(error => {
+router.delete("/:event_id", async (req, res) => {
+  const { event_id } = req.params
+  const event = await Event.findByPk(event_id)
+
+  if (event.userId !== parseInt(req.jwtPayload.user_id)) {
+    return res.status(403).json({message: "not auth"})
+  }
+
+  try {
+    await event.destroy()
+    res.status(200).json({event})
+  } catch (error) {
     res.status(500).json({error})
-  })
+  }
 })
 
 module.exports = router;
