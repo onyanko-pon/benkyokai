@@ -6,7 +6,7 @@ const Event = require('../../models/Event')
 router.get("/", auth, (req, res) => {
   Event.findAll({
     where: {
-      team_id: req.jwtPayload.team_id
+      teamId: req.jwtPayload.team_id
     }
   }).then(events => {
       res.status(200).json({events})
