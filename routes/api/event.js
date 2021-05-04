@@ -15,8 +15,19 @@ router.get("/", auth, (req, res) => {
   })
 })
 
-router.get("/:eventId", (req, res) => {
+router.get("/:eventId", auth, async (req, res) => {
+  const {eventId} = req.params
+  const event = await Event.findByPk(eventId)
 
+  if (!event) {
+    return res.status(404).json({message: "not found"})
+  }
+  
+  if (event.workspaceId !== req.jwtPayload.workspace_id) {
+    return res.status(403).json({message: "not auth"})
+  }
+
+  res.status(200).json({event})
 })
 
 router.put("/:event_id", (req, res) => {
