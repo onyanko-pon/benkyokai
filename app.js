@@ -16,7 +16,8 @@ const apiSlackRouter = require('./routes/slack/index')
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:3000',
+  // origin: 'http://localhost:3000',
+  origin: '*',
   credentials: true, // 'Access-Control-Allow-Credentials'
   // optionsSuccessStatus: 200
 }))
