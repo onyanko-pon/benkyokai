@@ -7,4 +7,7 @@ router.use("/events", eventRouter)
 const workspaceRouter = require('./workspace')
 router.use("/workspaces", workspaceRouter)
 
+const userRouter = require('./user')
+router.use("/users", userRouter)
+
 module.exports = router;
