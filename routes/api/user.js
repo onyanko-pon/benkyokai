@@ -14,7 +14,7 @@ router.get("/detail", auth, async (req, res) => {
       },
       {
         model: Event,
-        as: 'AdminEvent'
+        as: 'adminEvent'
       },
     ],
   })

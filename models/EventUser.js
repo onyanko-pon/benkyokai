@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../db/sequelize')
 
-const EventUser = sequelize.define('EventUser', {
+const EventUser = sequelize.define('eventUser', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,

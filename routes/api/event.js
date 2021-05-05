@@ -15,7 +15,7 @@ router.get("/", auth, (req, res) => {
       },
       {
         model: User,
-        as: 'Administrator'
+        as: 'administrator'
       },
     ],
   }).then(events => {
@@ -55,7 +55,7 @@ router.get("/:eventId", auth, async (req, res) => {
       },
       {
         model: User,
-        as: 'Administrator'
+        as: 'administrator'
       },
     ],
   })
