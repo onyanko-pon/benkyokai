@@ -37,4 +37,3 @@ create table events_users (
     updated_at timestamp NOT NULL,
     PRIMARY KEY (id)
 );
-

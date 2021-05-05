@@ -12,6 +12,7 @@ router.get("/", auth, (req, res) => {
     include: [
       {
         model: User,
+        as: 'users'
       },
       {
         model: User,
@@ -52,6 +53,7 @@ router.get("/:eventId", auth, async (req, res) => {
     include: [
       {
         model: User,
+        as: 'users'
       },
       {
         model: User,

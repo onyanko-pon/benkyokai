@@ -9,11 +9,15 @@ const EventUser = sequelize.define('eventUser', {
   },
   eventId: {
     type: Sequelize.INTEGER,
-    field: 'event_id'
+    field: 'event_id',
+
+    references: { model: 'Event', key: '_id' },
   },
   userId: {
     type: Sequelize.INTEGER,
-    field: 'user_id'
+    field: 'user_id',
+    references: { model: 'User', key: '_id' },
+
   },
   createdAt: {type: Sequelize.DATE, field: 'created_at'},
   updatedAt: {type: Sequelize.DATE, field: 'updated_at'},
