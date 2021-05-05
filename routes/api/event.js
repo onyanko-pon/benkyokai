@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../auth')
 
-const { Event, User } = require('../../models')
+const { Event, User, EventUser } = require('../../models')
 
 router.get("/", auth, (req, res) => {
   Event.findAll({
