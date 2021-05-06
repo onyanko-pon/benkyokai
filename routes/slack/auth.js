@@ -9,12 +9,13 @@ const Workspace = require("../../models/Workspace")
 const auth = require("../../auth")
 
 router.post("/signin", async (req, res) => {
-  const { code } = req.body
+  const { code, redirect_uri } = req.body
 
+  // TODO redirect_uriを定数から
   const fetch_res = await fetch("https://slack.com/api/oauth.v2.access", {
     method: "POST",
     headers: {"Content-Type": "application/x-www-form-urlencoded"},
-    body: `code=${code}&client_id=${process.env.SLACK_API_CLIENT_ID}&client_secret=${process.env.SLACK_API_CLIENT_SECRET}`
+    body: `code=${code}&client_id=${process.env.SLACK_API_CLIENT_ID}&client_secret=${process.env.SLACK_API_CLIENT_SECRET}&redirect_uri=${redirect_uri}`
   })
 
   const data = await fetch_res.json()
