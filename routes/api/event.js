@@ -26,6 +26,25 @@ router.get("/", auth, (req, res) => {
   })
 })
 
+router.get("/participate", auth, async (req, res) => {
+  const userId = req.jwtPayload.user_id
+
+  const user = await User.findByPk(userId, {
+    include: [
+      {
+        model: Event,
+        as: 'events',
+        include: {
+          model: User,
+          as: 'administrator'
+        }
+      }
+    ]
+  })
+
+  res.status(200).json({events: user.events, user})
+})
+
 router.post("/:eventId/participate", auth, async (req, res) => {
   const { eventId } = req.params
   const {workspace_id, user_id} = req.jwtPayload

@@ -14,7 +14,7 @@ Workspace.hasMany(Event, { foreignKey: 'workspace_id' })
 User.belongsTo(Workspace, { foreignKey: 'workspace_id' })
 User.hasOne(Event, { foreignKey: 'user_id', as: "adminEvent" })
 
-User.belongsToMany(Event, { through: EventUser, foreignKey: 'event_id'})
+User.belongsToMany(Event, { through: EventUser, as: 'events',  otherKey: "event_id", foreignKey: 'user_id'})
 
 exports.Event = Event
 exports.Workspace = Workspace
