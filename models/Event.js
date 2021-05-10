@@ -19,6 +19,11 @@ const Event = sequelize.define('event', {
     type: Sequelize.STRING,
     field: 'description'
   },
+  status: {
+    type: Sequelize.ENUM,
+    values: ['preparation', 'cat'],
+    defaultValue: 'preparation'
+  },
   userId: {
     type: Sequelize.INTEGER,
     field: 'user_id'
@@ -33,11 +38,13 @@ const Event = sequelize.define('event', {
   },
   startTime: {
     type: Sequelize.TIME,
-    field: 'start_time'
+    field: 'start_time',
+    defaultValue: '10:00'
   },
   endTime: {
     type: Sequelize.TIME,
-    field: 'end_time'
+    field: 'end_time',
+    defaultValue: '11:00'
   },
   createdAt: {type: Sequelize.DATE, field: 'created_at'},
   updatedAt: {type: Sequelize.DATE, field: 'updated_at'},

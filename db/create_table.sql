@@ -22,6 +22,7 @@ create table events (
     title varchar(255),
     description varchar(255),
     date date,
+    status SERIAL,
     start_time time,
     end_time time,
     created_at timestamp NOT NULL,
