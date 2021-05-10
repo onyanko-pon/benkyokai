@@ -17,12 +17,14 @@ create table users (
     PRIMARY KEY (id)
 );
 
+CREATE TYPE event_status AS ENUM ('wip','published');
+
 create table events (
     id SERIAL,
     title varchar(255),
     description varchar(255),
     date date,
-    status SERIAL,
+    status event_status,
     start_time time,
     end_time time,
     created_at timestamp NOT NULL,
