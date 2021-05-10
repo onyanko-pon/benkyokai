@@ -92,6 +92,24 @@ router.get("/:eventId", auth, async (req, res) => {
   res.status(200).json({event, body: req.body})
 })
 
+router.post("/", auth, async (req, res) => {
+  const { eventId } = req.params
+
+  const userId = parseInt(req.jwtPayload.user_id)
+  const user = await User.findByPk(userId)
+
+  try {
+    const eventData = req.body.event
+    eventData.userId = userId
+    eventData.workspaceId = user.workspaceId
+    const event = await Event.create(eventData)
+
+    res.status(200).json({event})
+  } catch (error) {
+    res.status(500).json({error})
+  }
+})
+
 router.put("/:event_id", auth, async (req, res) => {
   const { event_id } = req.params
 

@@ -21,8 +21,8 @@ const Event = sequelize.define('event', {
   },
   status: {
     type: Sequelize.ENUM,
-    values: ['preparation', 'cat'],
-    defaultValue: 'preparation'
+    values: ['wip', 'published'],
+    defaultValue: 'wip'
   },
   userId: {
     type: Sequelize.INTEGER,

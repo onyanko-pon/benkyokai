@@ -25,8 +25,6 @@ router.post("/", async (req, res) => {
       userId: user.id,
       workspaceId: user.workspaceId,
       date: tomorrow.toLocaleDateString(),
-      startTime: startTime.toLocaleTimeString(),
-      endTime: endTime.toLocaleTimeString(),
     })
     chat.postMessage(user.slackId, `勉強会が作成されました event_id ${event.id}`)
     res.status(200)
