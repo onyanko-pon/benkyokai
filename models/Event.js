@@ -27,6 +27,18 @@ const Event = sequelize.define('event', {
     type: Sequelize.INTEGER,
     field: 'workspace_id'
   },
+  date: {
+    type: Sequelize.DATEONLY,
+    field: 'date'
+  },
+  startTime: {
+    type: Sequelize.TIME,
+    field: 'start_time'
+  },
+  endTime: {
+    type: Sequelize.TIME,
+    field: 'end_time'
+  },
   createdAt: {type: Sequelize.DATE, field: 'created_at'},
   updatedAt: {type: Sequelize.DATE, field: 'updated_at'},
 }, {

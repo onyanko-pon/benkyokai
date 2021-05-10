@@ -48,7 +48,7 @@ router.post("/:eventId/participate", auth, async (req, res) => {
 })
 
 router.get("/:eventId", auth, async (req, res) => {
-  const {eventId} = req.params
+  const { eventId } = req.params
   const event = await Event.findByPk(eventId, {
     include: [
       {
@@ -70,7 +70,7 @@ router.get("/:eventId", auth, async (req, res) => {
     return res.status(403).json({message: "not auth"})
   }
 
-  res.status(200).json({event})
+  res.status(200).json({event, body: req.body})
 })
 
 router.put("/:event_id", auth, async (req, res) => {
@@ -83,11 +83,16 @@ router.put("/:event_id", auth, async (req, res) => {
     return res.status(403).json({message: "not auth"})
   }
 
-  event.description = description
-  event.title = title
+  // TODO 外部キーなど不必要なKeyが変更可能になっているので、制限する
   try {
-    await event.save()
-    res.status(200).json({event})
+    const newEvent = req.body.event
+    delete newEvent.id
+    await Event.update(newEvent, {
+      where: {
+        id: event.id
+      }
+    });
+    res.status(200).json({event: newEvent})
   } catch (error) {
     res.status(500).json({error})
   }
