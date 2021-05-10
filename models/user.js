@@ -17,6 +17,9 @@ const User = sequelize.define('user', {
   name: {
     type: Sequelize.STRING,
   },
+  image: {
+    type: Sequelize.STRING
+  },
   workspaceId: {
     type: Sequelize.INTEGER,
     field: 'workspace_id'

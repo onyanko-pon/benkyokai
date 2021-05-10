@@ -11,6 +11,7 @@ create table users (
     id SERIAL,
     slack_id varchar(255) NOT NULL UNIQUE,
     name varchar(255) NOT NULL,
+    image text,
     created_at timestamp NOT NULL,
     updated_at timestamp NOT NULL,
     workspace_id SERIAL NOT NULL REFERENCES workspaces(id),

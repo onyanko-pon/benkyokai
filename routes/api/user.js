@@ -25,17 +25,7 @@ router.put("/", auth, async (req, res) => {
 router.get("/detail", auth, async (req, res) => {
 
   const userId = req.jwtPayload.user_id
-  const user = await User.findByPk(userId, {
-    include: [
-      {
-        model: Event,
-      },
-      {
-        model: Event,
-        as: 'adminEvent'
-      },
-    ],
-  })
+  const user = await User.findByPk(userId)
 
   if (!user) {
     return res.status(404).json({message: "not found"})

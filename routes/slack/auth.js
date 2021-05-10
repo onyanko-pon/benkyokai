@@ -21,13 +21,37 @@ router.post("/signin", async (req, res) => {
   const data = await fetch_res.json()
 
   const {authed_user, team, ok} = data
+  const access_token = authed_user.access_token
+
+  let user = await User.findOne({ where: { slackId: authed_user.id}})
+  const workspace = await Workspace.findOne({ where: { slackId: team.id}})
+
+  if (!user) {
+    const profileFetchRes = await fetch("https://slack.com/api/users.profile.get", {
+      method: "POST",
+      headers: {"Content-Type": "application/x-www-form-urlencoded"},
+      body: `token=${access_token}&user=${authed_user.id}`
+    })
+
+    const userProfileData = await profileFetchRes.json()
+
+    const {image_original: profileImage, display_name: name} = userProfileData.profile
+
+    try {
+      user = await User.create({
+        name: name,
+        image: profileImage,
+        slackId: authed_user.id,
+        workspaceId: workspace.id
+      })
+    } catch (e) {
+      res.status(500).json({error: e})
+    }
+  }
 
   if (!ok) {
     return res.status(401).json(data)
   }
-
-  const user = await User.findOne({ where: { slackId: authed_user.id}})
-  const workspace = await Workspace.findOne({ where: { slackId: team.id}})
 
   let token = ""
   try {
