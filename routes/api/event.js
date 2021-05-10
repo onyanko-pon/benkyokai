@@ -94,7 +94,6 @@ router.get("/:eventId", auth, async (req, res) => {
 
 router.put("/:event_id", auth, async (req, res) => {
   const { event_id } = req.params
-  const { description, title } = req.body
 
   const event = await Event.findByPk(event_id)
 
