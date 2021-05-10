@@ -93,7 +93,6 @@ router.get("/:eventId", auth, async (req, res) => {
 })
 
 router.post("/", auth, async (req, res) => {
-  const { eventId } = req.params
 
   const userId = parseInt(req.jwtPayload.user_id)
   const user = await User.findByPk(userId)
