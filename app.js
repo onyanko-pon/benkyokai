@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', apiRouter);
 app.use('/api/slack', apiSlackRouter)
 
-app.use('/hello', (req, res) => {
+app.get('/hello', (req, res) => {
   res.status(200).json({message: "hello"})
 });
 
