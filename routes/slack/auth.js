@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router();
 const fetch = require('node-fetch')
 const jwt = require('jsonwebtoken')
-const session = require("express-session")
 const User = require("../../models/user")
 const Workspace = require("../../models/Workspace")
 
@@ -63,8 +62,6 @@ router.post("/signin", async (req, res) => {
   } catch (e) {
     return res.status(500).json({error: e})
   }
-
-  req.session.user = user
 
   res.cookie('token', token, {
     maxAge: 31536000,
