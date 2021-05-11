@@ -72,7 +72,7 @@ router.post("/signin", async (req, res) => {
     // TODO 本番で設定
     domain: process.env.BACKEND_DOMAIN,
     secure: true,
-    httpOnly: true,
+    // httpOnly: true,
     path: '/'
   })
 
