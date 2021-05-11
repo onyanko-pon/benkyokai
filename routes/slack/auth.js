@@ -70,10 +70,10 @@ router.post("/signin", async (req, res) => {
     maxAge: 31536000,
     sameSite: 'None',
     // TODO 本番で設定
-    domain: process.env.BACKEND_DOMAIN,
+    // domain: process.env.BACKEND_DOMAIN,
     secure: true,
     // httpOnly: true,
-    path: '/'
+    // path: '/'
   })
 
   res.status(200).json({user, workspace})
