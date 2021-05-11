@@ -72,7 +72,7 @@ router.post("/signin", async (req, res) => {
     // TODO 本番で設定
     // domain: "",
     secure: true,
-    // httpOnly: true
+    httpOnly: true
   })
 
   res.status(200).json({user, workspace})
