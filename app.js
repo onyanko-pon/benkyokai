@@ -8,7 +8,6 @@ const cors = require('cors')
 const path = require('path');
 const logger = require('morgan');
 const cacheControl = require('express-cache-controller');
-const session = require('express-session');
 
 const apiRouter = require('./routes/api')
 const apiSlackRouter = require('./routes/slack/index')
@@ -22,16 +21,6 @@ app.use(cors({
 app.use(cacheControl({ maxAge: 14400 }));
 const cookieParser = require('cookie-parser')
 app.use(cookieParser());
-app.use(session({
-  secret: 'secret',
-  resave: false,
-  saveUninitialized: false,
-  cookie:{
-    httpOnly: false,
-    secure: false,
-    maxage: 1000 * 60 * 30
-  }
-}))
 
 app.use(logger('dev'));
 app.use(express.json());
